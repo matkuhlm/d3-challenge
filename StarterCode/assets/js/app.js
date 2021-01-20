@@ -167,59 +167,7 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     .classed("inactive", true)
     .classed("aText", true);
 
-    // Append y axis label
-  chartGroup.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left + 40)
-    .attr("x", -40 - (height / 2))
-    .attr("dy", "1em")
-    .text("Lacks Healthcare (%)")
-    .attr("font-weight", "bold")
-    .classed("aText", true);
-
-  var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
-
-    // x axis labels event listener
-  labelsGroup.selectAll("text")
-  .on("click", function() {
-    // get value of selection
-    var value = d3.select(this).attr("value");
-    if (value !== chosenXAxis) {
-
-      // replaces chosenXAxis with value
-      chosenXAxis = value;
-
-      // console.log(chosenXAxis)
-
-      // functions here found above csv import
-      // updates x scale for new data
-      xLinearScale = xScale(stateData, chosenXAxis);
-
-      // updates x axis with transition
-      xAxis = renderAxes(xLinearScale, xAxis);
-
-      // updates circles with new x values
-      circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
-
-      // updates tooltips with new info
-      circleText = renderText(circleText, xLinearScale, chosenXAxis);
-      
-      circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
-
-      //change classes to change bold text
-      if (chosenXAxis === "poverty") {
-        povertyLabel.classed("active", true).classed("inactive", false);
-        incomeLabel.classed("active", false).classed("inactive", true);
-              } else {
-                  povertyLabel.classed("active", false).classed("inactive", true);
-                  incomeLabel.classed("active", true).classed("inactive", false);
-              }
-          }
-      });
-}).catch(function(error) {
-console.log(error);
-});
-
+   
 
 
 
